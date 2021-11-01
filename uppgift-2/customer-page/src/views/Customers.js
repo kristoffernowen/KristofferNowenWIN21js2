@@ -6,7 +6,7 @@ const Customers = () => {
     return (
         <div>
             <Navbar />
-            <div className="d-flex justify-content-center my-5">
+            <div className="d-flex justify-content-center my-3">
                 <h1>Befintliga kunder</h1>
             </div>
             <div className="App d-flex justify-content-around">

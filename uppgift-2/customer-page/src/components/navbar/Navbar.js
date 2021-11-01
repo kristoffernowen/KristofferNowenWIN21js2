@@ -18,6 +18,9 @@ const Navbar = () => {
         <li className="nav-item">
           <NavLink className="nav-link" to="/">Registrera ny kund</NavLink>
         </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/welcomeback">Logga ut</NavLink>
+        </li>
         
       </ul>
     </div>
