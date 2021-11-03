@@ -11,7 +11,7 @@ const GridCard = () => {
         setTheCustomers( await res.json())
    })
     
-        
+ 
        
 
     return (
@@ -19,7 +19,7 @@ const GridCard = () => {
 
             {   
                 theCustomers.map(customer => (
-                <div className="col">
+                <div key={customer.id} className="col">
                    <Card  item={customer}   />
                 </div>
                 ))

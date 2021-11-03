@@ -5,7 +5,7 @@ const WelcomeBack = () => {
     return (
         <div className="d-flex justify-content-center mt-5">
             <p>Du har loggat ut. Välkommen åter!</p>
-            <NavLink to="/signin">Logga in</NavLink>
+            <NavLink to="/">Logga in</NavLink>
         </div>
     )
 }
