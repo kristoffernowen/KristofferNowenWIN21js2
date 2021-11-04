@@ -14,7 +14,7 @@ const Card = ({item}) => {
             <p className="card-text"> {item.lastName}</p>
             <p className="card-text"> {item.email}</p>
             
-            <a href="#" className="btn btn-primary">Kontakta</a>
+            {/* <a href="#" className="btn btn-primary">Kontakta</a> */}
             </div>
         </div>
     )
