@@ -13,6 +13,7 @@ const RegisterCustomers = () => {
 
     const [validName, setValidName] = useState()
     const nameRegex = /^[A-Z,ÅÄÖ][a-öA-Ö]+(-[A-Z,ÅÄÖ][a-ö]+)?$/
+    
     const validateThis = (e) => {if (!nameRegex.test(e.target.value)) {
                 
                  document.getElementById("firstNameResponse").innerText = 'Namnet måste innehålla minst två bokstäver, börja med stor bokstav. Skriv dubbelnamn Aa-Aa'
@@ -82,11 +83,11 @@ const RegisterCustomers = () => {
         if (!regEx.test(e.target.value)) {
             // emailResponse.innerText="ogiltig e-postadress"
             // emailResponse.style.color="red"
-            document.getElementById('emailResponse').innerText = 'ogiltig e-postadress'
+            document.getElementById('emailResponse').innerText = 'Ogiltig e-postadress'
             document.getElementById('emailResponse').style.color = "red"
             setValidEmail(false)
         } else {
-            document.getElementById('emailResponse').innerText = "giltig e-postadress"
+            document.getElementById('emailResponse').innerText = "Giltig e-postadress"
             document.getElementById('emailResponse').style.color = "green"
             setValidEmail(true)
             emailHandler(e)
@@ -97,31 +98,35 @@ const RegisterCustomers = () => {
 
     let jsonCustomer = JSON.stringify(customerObject)
             
-    //         async function postCustomer() {
-    //                 await fetch('https://ecexam-webapi.azurewebsites.net/api/customers',
-    //                     {
-    //                         headers: {
-    //                             'content-Type': 'application/json'
-    //                         },
-    //                         method: 'post',
-    //                         body: jsonCustomer
-    //                     })
-    //             }    //   detta går in på knappens att göra på click/submit
+            async function postCustomer() {
+                    await fetch('https://ecexam-webapi.azurewebsites.net/api/customers',
+                        {
+                            headers: {
+                                'content-Type': 'application/json'
+                            },
+                            method: 'post',
+                            body: jsonCustomer
+                        })
+                }    //   detta går in på knappens att göra på click/submit
 
                 // https://ecexam-webapi.azurewebsites.net/swagger/index.html     här finns apiet, men måste ha annat slut för fetch/fetchpost
+
+    let submitResponse = document.getElementById('submitResponse')
 
     const buttonHandler = (e) => { 
         if (validName && validLastName && validEmail) {
             console.log(customerObject, 'firstName: ' + validName, 'lastName: ' + validLastName, 'email: ' + validEmail) 
-            document.getElementById('submitResponse').innerText = "Du har skickat dina uppgifter"
+            submitResponse.innerText = "Du har skickat dina uppgifter"
             console.log(jsonCustomer)
-            // postCustomer()
+            postCustomer()
             
         }
         else {
-            console.log('ogiltiga uppgifter', 'firstName: ' + validName, 'lastName: ' + validLastName, 'email: ' + validEmail)
+            console.log(`ogiltiga uppgifter1, 'firstName1:' ${validName}`)
+            console.log('ogiltiga uppgifter', 'firstName:' + validName, 'lastName: ' + validLastName, 'email: ' + validEmail)
             e.preventDefault()
             document.getElementById('submitResponse').innerText = "Du har lämnat ogiltiga uppgifter och kan inte registrera dig"
+            document.querySelector('#submitResponse').innerText = "Du har lämnat ogiltiga uppgifter och kan inte registrera dig"
         }
     }
     
@@ -133,16 +138,16 @@ const RegisterCustomers = () => {
         <div>
             <Navbar />
             <div className="d-flex justify-content-center">
-                <form className="mb-3 "  autoComplete="off" >
+                <form className="mb-3 " onSubmit={buttonHandler} autoComplete="off" noValidate >
                     <div className="mb-3">
                         <label htmlFor="firstName" className="form-label">Förnamn</label>
                         <input type="text" id="firstName" name="firstName" onChange={validateThis}  className="form-control" aria-describedby="emailHelp" />
-                        <div id="firstNameResponse" className="form-text">Namnet måste innehålla minst två tecken.</div>
+                        <div id="firstNameResponse" className="form-text">Namnet måste innehålla minst två bokstäver, börja med stor bokstav. Skriv dubbelnamn Aa-Aa</div>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="lastName" className="form-label">Efternamn</label>
                         <input type="text" className="form-control" id="lastName" name="lastName" onChange={validateThat} />
-                        <div id="lastNameResponse" className="form-text">Namnet måste innehålla minst två tecken.</div>
+                        <div id="lastNameResponse" className="form-text">Namnet måste innehålla minst två bokstäver, börja med stor bokstav. Skriv dubbelnamn Aa-Aa</div>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="emailAdress" className="form-label">E-postadress</label>
@@ -150,7 +155,7 @@ const RegisterCustomers = () => {
                         <div id="emailResponse" className="form-text">Skriv en giltig e-postadress</div>
                     </div>
                     
-                    <button id="submitButton" type="button" onClick={buttonHandler} className="btn btn-primary">Registrera</button>
+                    <button id="submitButton" type="submit"  className="btn btn-primary">Registrera</button>
                     <div id="submitResponse" className="form-text"></div>
                 </form>
 
