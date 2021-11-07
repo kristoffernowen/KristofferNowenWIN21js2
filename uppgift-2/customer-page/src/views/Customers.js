@@ -9,8 +9,11 @@ const Customers = () => {
             <div className="d-flex justify-content-center my-3">
                 <h1>Befintliga kunder</h1>
             </div>
-            <div className="App d-flex justify-content-around">
-                <GridCard />
+            <div className="container">
+
+                <div className="App d-flex  justify-content-around ms-5">
+                    <GridCard />
+                </div>
             </div>
         </div>
     )

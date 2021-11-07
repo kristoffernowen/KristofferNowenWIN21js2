@@ -7,14 +7,14 @@ const Card = ({item}) => {
 
     return (
         <div className="card" style={{width: 18 + 'rem'}}> 
-            <img src="images/sunset.jpg" className="card-img-top" alt="..." />
+            <img src="images/sunset.jpg" className="card-img-top" alt="sunset" />
             <div className="card-body">
             
             <p className="card-text"> {item.firstName}</p>
             <p className="card-text"> {item.lastName}</p>
             <p className="card-text"> {item.email}</p>
             
-            {/* <a href="#" className="btn btn-primary">Kontakta</a> */}
+            
             </div>
         </div>
     )
@@ -22,4 +22,4 @@ const Card = ({item}) => {
 
 export default Card
 
-// https://static.thousandwonders.net/%C5%A0ar.Mountains.640.39559.jpg
+
